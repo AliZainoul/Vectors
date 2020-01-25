@@ -30,6 +30,26 @@ int main()
   cout << "L2-Norm of the vector : "<< w1.twonorm()<<endl;
 	cout << "Linfinity-Norm of the vector : "<< w1.maxnorm()<<endl;
   cout<< "                        "<<endl;
+	Vector pihg = v4;
+	cout << "**************************************" << endl;
+	cout << pihg << endl;
+	double doot = dot(v4,pihg);
+	cout << doot << endl;
+	cout << v4.twonorm()*v4.twonorm()<<endl;
+	cout << "**************************************" << endl;
+
+	cout << "**************************************" << endl;
+	cout << "v3" << v3;
+	Vector zero = v3 - v3;
+	cout << "duble" << zero;
+	Vector duble = v3 + v3;
+	double lambda = 10;
+	cout << "lambda" << lambda;
+	Vector lambdaR =  v3*lambda;
+	cout << "v3" << lambdaR;
+	Vector lambdaL =  lambda * v3;
+	cout << "v3" << lambdaL;
+	cout << "**************************************" << endl;
 
 	/*cout<< "Test of Constructor "<<endl;
 	w1.reset(1.1);

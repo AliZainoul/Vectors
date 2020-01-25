@@ -4,6 +4,13 @@
 #include "error.hpp"
 using namespace std;
 
+// Constructor 0 - Default Constructor
+// Usage: Vector V => V = NULLPTR
+Vector::Vector(){
+	M_data = nullptr;
+	M_size = 0;
+}
+
 // Constructor 1 - Size Constructor
 // Usage: Vector V(10) => V = [0.0 ; 0.0 ; ... ; 0.0], size=10;
 Vector::Vector(int i){
@@ -13,14 +20,14 @@ Vector::Vector(int i){
 }
 
 // Constructor 2 - Size and value Constructor
-// Usage: Vector V(2,3) => V = [3;3]
+// Usage: Vector V(2,3) => V = [3;3], size=2;
 Vector::Vector(int i, double v){
 	M_data = new double[i];
 	M_size = i;
   for(int k=0;k<M_size;++k) M_data[k]=v;
 }
 // Constructor 3 - List Constructor
-// Usage: Vector V(list) => V = [list.begin; ... ; list.end];
+// Usage: Vector V = {x1,...,xn} => V = [x1; ... ;xn], size=n;
 Vector::Vector(initializer_list<double> lst){
 	M_data = new double[lst.size()];
 	M_size = static_cast<int>(lst.size());
@@ -28,7 +35,7 @@ Vector::Vector(initializer_list<double> lst){
 }
 
 // Constructor 4 - Copy Constructor
-// Usage: Vector V(W) => V = W;
+// Usage: Vector V = W => V = W, size=size of  W;
 Vector::Vector(Vector const &v){
 	(v.M_size==0)? M_data = nullptr : M_data = new double[v.M_size];
 	M_size = v.M_size;
@@ -36,7 +43,7 @@ Vector::Vector(Vector const &v){
 }
 
 // Constructor 5 - Move Constructor
-// Usage: Vector V(W) => V = W;
+// Usage: Vector V(W) => V = W, size=size of  W;
 Vector::Vector(Vector&& v){
 	M_data=v.M_data;
 	M_size=v.M_size;
@@ -50,9 +57,24 @@ Vector::~Vector(){
 }
 
 // Show Function
-void Vector::affiche(){
-  cout << "Taille du vecteur: "<< M_size<< "\n";
-  for(int i=0; i<M_size; i++) cout<<i<<" "<<M_data[i]<<endl;
+void Vector::show(){
+  cout << "Vector's Size: "<< M_size<< endl;
+	cout << " Index : ";
+	cout << " [ " ;
+  for(int i=0; i<M_size; i++)
+	{
+		cout << "  " << i+1	<< "  ";
+	}
+	cout << " ] " ;
+	cout << endl;
+	cout << " Value : ";
+	cout << " [ " ;
+	for(int i=0; i<M_size; i++)
+	{
+		cout << "  " <<M_data[i] << "  ";
+	}
+	cout << " ] " ;
+	cout << endl;
 }
 
 int Vector::size() const { return M_size; }    // Return Size of the Vector
@@ -85,10 +107,9 @@ Vector& Vector::operator=(Vector&& v){
 
 // Surcharge Of Operator 'Outstream'
 std::ostream& operator << (std::ostream& s, const Vector& v){
-  using std::endl;
-  //s << "Surcharge opérateur: taille du vecteur: " << v.M_size << endl;
+	s << "Vector's size is : " << v.M_size << endl;
   for (int i = 0; i < v.M_size; i++)
-	s<< " | "<< "Index : "<< i+1<< " | "<< " "<< v.M_data[i]<<" | "<< endl;
+	s << i+1 << "  "<< v.M_data[i]<<"  "<< endl;
   return s;
 }
 

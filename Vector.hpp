@@ -23,7 +23,7 @@ class Vector
   ~Vector();
 
   // void reset(double x);
-  void affiche();
+  void show();
   int size() const;    // Return Size of the Vector
 
   // Norms
@@ -39,14 +39,15 @@ class Vector
   double operator[](int i) const{return M_data[i];} // Subscript Operator const
 
   // Friends Functions
-  friend double dot(const Vector&, const Vector&);  // Dot product
-  friend Vector operator*(double, const Vector&);   // Scalar-Vector Product
-  friend Vector operator*(const Vector&, double);   // Vector-Scalar Product
-  friend Vector operator+(const Vector&);                 // Unary Operator, V = +W
-  friend Vector operator-(const Vector&);                // Unary Operator, V = -W
-  friend Vector operator+(const Vector&, const Vector&); // Binary Operator V = V1 + V2
-  friend Vector operator-(const Vector&, const Vector&); // Binary Operator V = V1 - V2
-  friend std::ostream& operator << (std::ostream&, const Vector&);// '<<' Overload
+  friend ostream& operator<< (ostream&, const Vector&);// '<<' Overload
+  friend Vector   operator+ (const Vector&, const Vector&); // Binary Operator V = V1 + V2
+  friend Vector   operator- (const Vector&, const Vector&); // Binary Operator V = V1 - V2
+  friend Vector   operator+ (const Vector&);           // Unary Operator, V = +W
+  friend Vector   operator- (const Vector&);           // Unary Operator, V = -W
+  friend Vector   operator* (double, const Vector&);   // Scalar-Vector Product
+  friend Vector   operator* (const Vector&, double);   // Vector-Scalar Product
+  friend double dot(const Vector&, const Vector&);     // Dot product
+
 
 };
 #endif
